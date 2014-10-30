@@ -273,8 +273,8 @@ if __name__ == '__main__':
     # Ejemplo donde empieza el jugador humano
     juego = juegos_cuadricula.InterfaseTK(Othello(),
                                           #JugadorOthello_basico(1),
-                                          JugadorOthello(1),
                                           juegos_cuadricula.JugadorHumano(), #JugadorOthello(1),
+                                          JugadorOthello(1),
                                           #juegos_cuadricula.JugadorHumano(), #JugadorOthello(1),
                                           1)
     juego.arranca()

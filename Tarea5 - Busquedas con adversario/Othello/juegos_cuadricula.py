@@ -152,7 +152,7 @@ class InterfaseTK:
                 color = self.color_fichas[juego.estado_inicial[i]]
                 self.tablero[i].id = self.tablero[i].create_oval(5, 5, L, L, fill=color)
                 self.tablero[i].update()
-            self.tablero[i].itemconfig(self.tablero[i].create_text(L/2, L/2, anchor="center", fill="light goldenrod"), text=str(i))
+            #self.tablero[i].itemconfig(self.tablero[i].create_text(L/2, L/2, anchor="center", fill="light goldenrod"), text=str(i))
 
     def arranca(self):
         """
@@ -169,11 +169,17 @@ class InterfaseTK:
         estado = self.juego.estado_inicial
         estado_anterior = estado
         self.actualiza_tablero(estado)
-
+        
+        jugador = -1 # Esta variable empieza como -1, pero el primer jugador es 1
         for paso in range(max_pasos):
-            jugador = pow(-1, paso)
+            jugador = -jugador
             if not self.juego.jugadas_legales(estado, jugador):
+                #print "El jugador ",jugador,"se quedo sin jugadas" #ToDelete
                 jugador = -jugador
+
+
+            #print [j for _, j in self.juego.jugadas_legales(estado, jugador)] #ToDelete
+
             jugada = self.jugadores[jugador].decide_jugada(self.juego, estado, jugador, self.tablero)
             estado = self.juego.hacer_jugada(estado, jugada, jugador)
             self.actualiza_tablero(estado, estado_anterior)
@@ -204,7 +210,7 @@ class InterfaseTK:
                 color = self.color_fichas[estado[i]]
                 self.tablero[i].id = self.tablero[i].create_oval(5, 5, self.L, self.L, fill=color)
                 self.tablero[i].update()
-            self.tablero[i].itemconfig(self.tablero[i].create_text(self.L/2, self.L/2, anchor="center", fill="light goldenrod"), text=str(i))
+            #self.tablero[i].itemconfig(self.tablero[i].create_text(self.L/2, self.L/2, anchor="center", fill="light goldenrod"), text=str(i))
 
 
 class JugadorInterfazTK:
